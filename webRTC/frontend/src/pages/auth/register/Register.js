@@ -1,7 +1,8 @@
 import React from "react";
+import AuthBox from "../../../components/AuthBox";
 
 const Register = () => {
-  return <div>Register</div>;
+  return <AuthBox>Register</AuthBox>;
 };
 
 export default Register;
