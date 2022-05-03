@@ -40,7 +40,7 @@ const InputWithLabel = (props) => {
       <Input
         value={value}
         type={type}
-        placeHold={placeholder}
+        placeholder={placeholder}
         onChange={handleChange}
       />
     </Wrapper>
