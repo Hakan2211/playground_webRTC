@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import AuthBox from "../../../components/AuthBox";
+import { getActions } from "../../../redux/actions/authAction";
 import { validateLoginForm } from "../../../utils/validators";
 import LoginPageFooter from "./LoginPageFooter";
 import LoginPageHeader from "./LoginPageHeader";
 import LoginPageInputs from "./LoginPageInputs";
 
-const Login = () => {
+const Login = ({ login }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setFormValid] = useState(false);
@@ -15,8 +17,12 @@ const Login = () => {
   }, [email, password, setFormValid]);
 
   const handleLogin = () => {
-    console.log("Login");
-    console.log(email, password);
+    const userDetails = {
+      email,
+      password,
+    };
+
+    login(userDetails);
   };
 
   return (
@@ -33,4 +39,10 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    ...getActions(dispatch),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Login);

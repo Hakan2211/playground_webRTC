@@ -4,8 +4,10 @@ import { Typography } from "@mui/material";
 import RegisterPageInputs from "./RegisterPageInputs";
 import RegisterPageFooter from "./RegisterPageFooter";
 import { validateRegisterForm } from "../../../utils/validators";
+import { connect } from "react-redux";
+import { getActions } from "../../../redux/actions/authAction";
 
-const Register = () => {
+const Register = ({ register }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -13,7 +15,12 @@ const Register = () => {
   const [isFormValid, setFormValid] = useState(false);
 
   const handleRegister = () => {
-    console.log(email, username, password, "register");
+    const userDetails = {
+      email,
+      username,
+      password,
+    };
+    register(userDetails);
   };
 
   useEffect(() => {
@@ -41,4 +48,10 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    ...getActions(dispatch),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Register);

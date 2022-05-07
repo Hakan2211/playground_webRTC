@@ -30,7 +30,7 @@ const Input = styled("input")({
 const InputWithLabel = (props) => {
   const { value, setValue, label, type, placeholder } = props;
 
-  const handleChange = (event) => {
+  const handleValueChange = (event) => {
     setValue(event.target.value);
   };
 
@@ -39,9 +39,9 @@ const InputWithLabel = (props) => {
       <Label>{label}</Label>
       <Input
         value={value}
+        onChange={handleValueChange}
         type={type}
         placeholder={placeholder}
-        onChange={handleChange}
       />
     </Wrapper>
   );
