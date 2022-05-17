@@ -7,7 +7,7 @@ import { validateRegisterForm } from "../../../utils/validators";
 import { connect } from "react-redux";
 import { getActions } from "../../../redux/actions/authAction";
 
-const Register = ({ register }) => {
+const RegisterPage = ({ register }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -54,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(null, mapDispatchToProps)(RegisterPage);

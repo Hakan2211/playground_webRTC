@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 import * as api from "../../api/api";
+import { openAlertMessage } from "./alertAction";
 
 export const authActions = {
   SET_USER_DETAILS: "AUTH.SET_USER_DETAILS",
@@ -24,8 +25,9 @@ const login = (userDetails) => {
     const response = api.login(userDetails);
 
     if (response.error) {
+      dispatch(openAlertMessage(response?.exception?.response?.data));
     } else {
-      const { userDetails } = response.data;
+      const { userDetails } = response?.data;
       localStorage.setItem("user", JSON.stringify(userDetails));
       dispatch(setUserDetails(userDetails));
       <Navigate to="/dashboard" />;
@@ -37,8 +39,9 @@ const register = (userDetails) => {
     const response = api.register(userDetails);
 
     if (response.error) {
+      dispatch(openAlertMessage(response?.exception?.response?.data));
     } else {
-      const { userDetails } = response.data;
+      const { userDetails } = response?.data;
       localStorage.setItem("user", JSON.stringify(userDetails));
       dispatch(setUserDetails(userDetails));
       <Navigate to="/dashboard" />;
