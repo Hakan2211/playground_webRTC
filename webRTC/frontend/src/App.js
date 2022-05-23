@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/auth/login/Login";
 import RegisterPage from "./pages/auth/register/RegisterPage";
-import Dashboard from "./pages/auth/dashboard/Dashboard";
+import Dashboard from "./pages/dashboard/Dashboard";
 import AlertNotification from "./components/AlertNotification";
 
 function App() {
