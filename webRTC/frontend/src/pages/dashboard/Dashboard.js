@@ -6,6 +6,7 @@ import Messenger from "./Messenger/Messenger";
 import AppBar from "./AppBar/AppBar";
 import { connect } from "react-redux";
 import { getActions } from "../../redux/actions/authAction";
+import { connectWithSocketServer } from "../../realtimeCommunication/socketConnection";
 
 const Wrapper = styled("div")({
   width: "100%",
@@ -14,15 +15,16 @@ const Wrapper = styled("div")({
 });
 
 const Dashboard = ({ setUserDetails }) => {
-  // useEffect(() => {
-  //   const userDetails = localStorage.getItem("user");
+  useEffect(() => {
+    const userDetails = localStorage.getItem("user");
 
-  //   if (!userDetails) {
-  //     window.location.pathname = "login";
-  //   } else {
-  //     setUserDetails(JSON.parse(userDetails));
-  //   }
-  // }, []);
+    if (!userDetails) {
+      window.location.pathname = "login";
+    } else {
+      setUserDetails(JSON.parse(userDetails));
+      connectWithSocketServer();
+    }
+  }, []);
 
   return (
     <Wrapper>

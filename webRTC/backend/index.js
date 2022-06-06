@@ -5,6 +5,8 @@ import morgan from "morgan";
 import dbConnect from "./db/dbConnect.js";
 import "express-async-errors";
 import authRouter from "./routes/authRoutes.js";
+import socketServer from "./socketServer.js";
+import http from "http";
 
 dotenv.config();
 
@@ -19,5 +21,8 @@ app.use(morgan("tiny"));
 app.use(cors());
 
 app.use("/api/auth", authRouter);
+
+const server = http.createServer(app);
+socketServer.registerSocketServer(server);
 
 app.listen(PORT, console.log(`Server is running at port ${PORT}`));
